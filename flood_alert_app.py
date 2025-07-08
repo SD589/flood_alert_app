@@ -107,7 +107,7 @@ if os.path.exists(dataset_path):
                 )
                 st.success(f"📤 Alert sent to {number} | SID: {msg.sid}")
 
-        else:
-            st.success("✅ Rainfall is normal. No alert needed.")
+        # else:
+        #     st.success("✅ Rainfall is normal. No alert needed.")
 # else:
 #     st.error("❌ Dataset file not found. Please check the path.")
