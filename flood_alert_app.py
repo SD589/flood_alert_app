@@ -109,5 +109,5 @@ if os.path.exists(dataset_path):
 
         else:
             st.success("✅ Rainfall is normal. No alert needed.")
-else:
-    st.error("❌ Dataset file not found. Please check the path.")
+# else:
+#     st.error("❌ Dataset file not found. Please check the path.")
