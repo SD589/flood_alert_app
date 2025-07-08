@@ -43,8 +43,8 @@ if os.path.exists(dataset_path):
     flood_threshold = df[df['Flood Occurred'] == 1]['Rainfall (mm)'].mean()
     drought_threshold = df[df['Flood Occurred'] == 0]['Rainfall (mm)'].quantile(0.10)
 
-    st.success(f"✅ Flood Threshold: {flood_threshold:.2f} mm")
-    st.success(f"✅ Drought Threshold: {drought_threshold:.2f} mm")
+    st.success(f" Flood Threshold: {flood_threshold:.2f} mm")
+    st.success(f" Drought Threshold: {drought_threshold:.2f} mm")
 
 
     # Machine Learning Model: Logistic Regression
@@ -64,10 +64,10 @@ if os.path.exists(dataset_path):
         weather = response.json()
         rainfall = weather.get("rain", {}).get("1h", 0.0)
 
-        st.info(f"🌦️ Current Rainfall in {CITY}: {rainfall} mm")
+        st.info(f"Current Rainfall in {CITY}: {rainfall} mm")
 
     except Exception as e:
-        st.error(f"❌ Error fetching weather data: {e}")
+        st.error(f"Error fetching weather data: {e}")
         st.stop()
 
     # Phone numbers
@@ -85,30 +85,30 @@ if os.path.exists(dataset_path):
     drought_msg_en = "Drought Alert! Very low rainfall. Please conserve water."
 
     # Check & Send Alert
-    if st.button("🔔 Check & Send Alert"):
+    if st.button(" Check & Send Alert"):
         client = Client(account_sid, auth_token)
 
         if rainfall > flood_threshold:
-            st.warning("🚨 Flood Alert Triggered!")
+            st.warning(" Flood Alert Triggered!")
             for number in phone_numbers:
                 msg = client.messages.create(
                     body=flood_msg_hi + "\n" + flood_msg_en,
                     from_=twilio_number,
                     to=number
                 )
-                st.success(f"📤 Alert sent to {number} | SID: {msg.sid}")
+                st.success(f" Alert sent to {number} | SID: {msg.sid}")
 
         elif rainfall < drought_threshold:
-            st.warning("🌵 Drought Alert Triggered!")
+            st.warning(" Drought Alert Triggered!")
             for number in phone_numbers:
                 msg = client.messages.create(
                     body=drought_msg_hi + "\n" + drought_msg_en,
                     from_=twilio_number,
                     to=number
                 )
-                st.success(f"📤 Alert sent to {number} | SID: {msg.sid}")
+                st.success(f" Alert sent to {number} | SID: {msg.sid}")
 
         else:
-            st.success("✅ Rainfall is normal. No alert needed.")
+            st.success(" Rainfall is normal. No alert needed.")
 else:
-    st.error("❌ Dataset file not found. Please check the path.")
+    st.error(" Dataset file not found. Please check the path.")
