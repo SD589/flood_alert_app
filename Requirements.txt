@@ -6,4 +6,3 @@ seaborn
 requests
 python-dotenv
 twilio
-
