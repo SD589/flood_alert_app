@@ -27,7 +27,8 @@ st.title("🌧️ Flood & Drought Alert System")
 st.markdown("🚨 Real-time rainfall monitoring in **Indore** and sends SMS alerts if there's a **flood or drought risk**.")
 
 # Dataset path
-dataset_path = "C://Users//Meghalka//OneDrive//Desktop//flood project//flood_risk_dataset_india.csv"
+ dataset_path = "flood_risk_dataset_india.csv"
+
 
 if os.path.exists(dataset_path):
     df = pd.read_csv(dataset_path)
